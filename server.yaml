@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server
+spec:
+  replicas: 3  # Simulate 3 Pods
+  selector:
+    matchLabels:
+      app: server
+  template:
+    metadata:
+      labels:
+        app: server
+    spec:
+      containers:
+      - name: server
+        image: nscchen/long_lived_connections_server
+        ports:
+        - containerPort: 5000
+        env:
+        - name: POD_ID
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name  # Use Pod name as ID
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: server-service
+spec:
+  selector:
+    app: server
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: ClusterIP
+

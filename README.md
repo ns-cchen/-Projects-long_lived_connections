@@ -47,3 +47,15 @@ kubectl apply -f client.yaml
 ```
 kubectl logs {client pod} | grep "Response from Pod" | awk -F"Pod " '{print $2}' | cut -d' ' -f1 | sort | uniq -c
 ```
+
+## Result
+
+The server will delay responses randomly between 20-60 seconds.
+The client will send 10,000 requests concurrently with a delay of 1-3 seconds between each request.
+The traffic is distributed evenly across the server pods.
+
+```
+3377 server-5f6cf9cbc4-mg7js,
+3288 server-5f6cf9cbc4-w6kwx,
+3241 server-5f6cf9cbc4-wdf4v,****
+```

@@ -24,12 +24,14 @@ Build the server Docker image:
 ```bash
 docker build -t your-docker-hub-username/long_lived_connections_server -f Dockerfile .
 docker push your-docker-hub-username/long_lived_connections_server
+```
 
 #### Client
 Build the client Docker image:
 ```bash
 docker build -t your-docker-hub-username/long_lived_connections_client -f Dockerfile_client .
 docker push your-docker-hub-username/long_lived_connections_client
+```
 
 ### Step 2: Deploy Server
 ```

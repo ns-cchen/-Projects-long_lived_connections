@@ -20,9 +20,15 @@ The client application:
 
 ### Step 1: Build Docker Images
 #### Server
-Build the server Docker image:
+Build the Python server Docker image:
 ```bash
-docker build -t your-docker-hub-username/long_lived_connections_server -f Dockerfile .
+docker build -t your-docker-hub-username/long_lived_connections_server -f Dockerfile_server_python .
+docker push your-docker-hub-username/long_lived_connections_server
+```
+
+Build the GO server Docker image:
+```bash
+docker build -t your-docker-hub-username/long_lived_connections_server -f Dockerfile_server_go .
 docker push your-docker-hub-username/long_lived_connections_server
 ```
 

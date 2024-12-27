@@ -55,7 +55,35 @@ The client will send 10,000 requests concurrently with a delay of 1-3 seconds be
 The traffic is distributed evenly across the server pods.
 
 ```
-3377 server-5f6cf9cbc4-mg7js,
-3288 server-5f6cf9cbc4-w6kwx,
-3241 server-5f6cf9cbc4-wdf4v,****
+counts server-name
+3377   server-5f6cf9cbc4-mg7js
+3288   server-5f6cf9cbc4-w6kwx
+3241   server-5f6cf9cbc4-wdf4v
 ```
+
+## Traffic Distribution Differences Between Go and Flask in Kubernetes
+### Python Flask Service
+
+**Setup**:
+
+Flask service with three pods (a, b, c) managed by a Kubernetes deployment.
+
+A Kubernetes service load balances traffic across the pods.
+
+Flask runs directly (not with uWSGI).
+
+**Behavior**:
+
+When one or more pods restart, traffic continues to be distributed evenly across all pods.
+
+### Go Service
+
+**Setup**:
+
+Replaced the Flask service with a Go-based HTTP server.
+
+Deployment and Kubernetes service configuration remain the same.
+
+**Behavior**:
+
+When pods b and c restart, the traffic sticks to pod a instead of being distributed evenly.

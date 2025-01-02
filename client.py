@@ -10,6 +10,10 @@ session = requests.Session()
 # Define the URL for the service
 service_url = "http://server-service.default.svc.cluster.local/api"
 
+# for i in range(10000):
+#     response = session.get(service_url)
+#     print(response.text)
+
 # Function to send request and return the response
 def send_request(i):
     time.sleep(random.uniform(1, 3))
